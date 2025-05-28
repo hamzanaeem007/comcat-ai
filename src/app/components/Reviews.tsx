@@ -1,4 +1,4 @@
-"use client"; // Mark as client component due to Swiper
+"use client";
 
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -28,9 +28,9 @@ export default function Reviews() {
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           breakpoints={{
-              600: { slidesPerView: 3 },
-              1000: { slidesPerView: 3},
-            }}
+            600: { slidesPerView: 3 },
+            1000: { slidesPerView: 3 },
+          }}
           className="reviews-carousel"
         >
           <SwiperSlide className="reviews-items">
@@ -52,8 +52,7 @@ export default function Reviews() {
             </div>
             <div className="reviews-body">
               <p>
-                We chose Comcat AI for its user-friendly interface, robust security features, and seamless deployment process. Since implementing the solution,
-                we&apos;ve successfully rolled out over 150 devices, significantly improving the efficiency of delivering both corporate and local content.
+                We chose Comcat AI for its user-friendly interface, robust security features, and seamless deployment process. Since implementing the solution, we&apos;ve successfully rolled out over 150 devices, significantly improving the efficiency of delivering both corporate and local content.
               </p>
             </div>
             <div className="reviews-footer">
@@ -79,8 +78,7 @@ export default function Reviews() {
             </div>
             <div className="reviews-body">
               <p>
-                Comcat AI has been instrumental in helping us monitor our performance. It has enhanced our interactions with operators by providing clear
-                insights into how we&apos;re performing against our set targets. This has been a game-changer for our operations.
+                Comcat AI has been instrumental in helping us monitor our performance. It has enhanced our interactions with operators by providing clear insights into how we&apos;re performing against our set targets. This has been a game-changer for our operations.
               </p>
             </div>
             <div className="reviews-footer">
@@ -90,7 +88,7 @@ export default function Reviews() {
           <SwiperSlide className="reviews-items">
             <div className="reviews-header">
               <div className="client-logo">
-                <Image src="/images/reviews/sabaz.webp" alt="Sabaz Logo" width={60} height={60  } />
+                <Image src="/images/reviews/sabaz.webp" alt="Sabaz Logo" width={60} height={60} />
               </div>
               <div className="client-rating">
                 <p>
@@ -106,9 +104,7 @@ export default function Reviews() {
             </div>
             <div className="reviews-body">
               <p>
-                We're extremely satisfied with Comcat AI! It only requires about 1% of my time-not because it&apos;s less important, but because it runs so smoothly
-                without any issues. The best part is how easy it is for end-users. As someone who can&apos;t personally assist everyone, it&apos;s crucial that the
-                system is intuitive for non-IT users, and Comcat AI delivers exactly that.
+                We&apos;re extremely satisfied with Comcat AI! It only requires about 1% of my time—not because it&apos;s less important, but because it runs so smoothly without any issues. The best part is how easy it is for end-users. As someone who can&apos;t personally assist everyone, it&apos;s crucial that the system is intuitive for non-IT users, and Comcat AI delivers exactly that.
               </p>
             </div>
             <div className="reviews-footer">

@@ -1,11 +1,11 @@
-"use client"; // Mark as client component due to useEffect, canvas, and event handling
+"use client";
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export default function PricingPlan() {
-  const [displays, setDisplays] = useState(5); // Initialize to match your screenshot
+  const [displays, setDisplays] = useState(5);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const screenCountRef = useRef<HTMLSpanElement>(null);
   const discountRef = useRef<HTMLSpanElement>(null);
@@ -14,7 +14,7 @@ export default function PricingPlan() {
   const rangeValueRef = useRef<HTMLDivElement>(null);
   const paidPlanCardRef = useRef<HTMLDivElement>(null);
 
-  const updateCanvas = () => {
+  const updateCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
     const screenCount = screenCountRef.current;
@@ -25,16 +25,13 @@ export default function PricingPlan() {
 
     if (!canvas || !ctx || !screenCount || !discount || !price || !monthPrice || !rangeValue) return;
 
-    // Update screen count
     screenCount.textContent = displays.toString();
 
-    // Move range value dynamically
     const range = document.getElementById('screenRange') as HTMLInputElement;
     const rangeRect = range.getBoundingClientRect();
     const valuePosition = ((displays - 1) / (1000 - 1)) * rangeRect.width;
     rangeValue.style.left = `${valuePosition}px`;
 
-    // Update "Sites" and "Displays" dynamically
     const paidPlanCard = paidPlanCardRef.current;
     if (paidPlanCard) {
       paidPlanCard.querySelectorAll('p').forEach((p) => {
@@ -47,7 +44,6 @@ export default function PricingPlan() {
       });
     }
 
-    // Discount and price calculation
     let calculatedDiscount = 0;
     let basePrice = 10.0;
 
@@ -71,37 +67,32 @@ export default function PricingPlan() {
       calculatedDiscount = 10;
     }
 
-    // Calculate total price with discount
     let totalPrice = displays * basePrice;
     totalPrice -= totalPrice * (calculatedDiscount / 100);
 
-    // Format price with commas and round it
     const formattedPrice = Math.round(totalPrice).toLocaleString();
 
     discount.textContent = `${calculatedDiscount}%`;
     price.textContent = `$${formattedPrice}`;
     monthPrice.innerHTML = `<span className="dollor" style="font-size: 15px;">$</span>${formattedPrice}<span className="month-text" style="font-size: 15px;margin-top: 15px;font-weight: 500;">/Per Month</span>`;
 
-    // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw arc background (grey semicircle)
     ctx.beginPath();
     ctx.strokeStyle = '#ddd';
     ctx.lineWidth = 20;
-    ctx.arc(225, 150, 140, Math.PI, 2 * Math.PI); // Semicircle from 180° to 360°
+    ctx.arc(225, 150, 140, Math.PI, 2 * Math.PI);
     ctx.stroke();
 
-    // Draw arc progress (orange)
-    const progress = (displays - 1) / (1000 - 1); // Normalize to 0-1
-    const endAngle = Math.PI + (progress * Math.PI); // Scale to semicircle range (180° to 360°)
+    const progress = (displays - 1) / (1000 - 1);
+    const endAngle = Math.PI + (progress * Math.PI);
 
     ctx.beginPath();
     ctx.strokeStyle = '#ED6934';
     ctx.lineWidth = 20;
     ctx.arc(225, 150, 140, Math.PI, endAngle);
     ctx.stroke();
-  };
+  }, [displays]);
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
@@ -119,8 +110,8 @@ export default function PricingPlan() {
   };
 
   useEffect(() => {
-    updateCanvas(); // Initial render
-  }, [displays]);
+    updateCanvas();
+  }, [displays, updateCanvas]);
 
   return (
     <>
@@ -216,8 +207,8 @@ export default function PricingPlan() {
                       <Image
                         src="/images/screen.webp"
                         alt="Screen Icon"
-                        width={30} // Adjusted to match your CSS
-                        height={30} // Adjusted to match your CSS
+                        width={30}
+                        height={30}
                         className="range-icon"
                       />
                     </div>
@@ -274,12 +265,22 @@ export default function PricingPlan() {
                 <ul className="cta-button">
                   <li>
                     <Link href="https://play.google.com/store/apps/details?id=com.comcatdigitaltv" target="_blank">
-                      <img src="/images/footer/google play.webp" alt="" />
+                      <Image
+                        src="/images/footer/google play.webp"
+                        alt="Google Play Store"
+                        width={135}
+                        height={40}
+                      />
                     </Link>
                   </li>
                   <li>
                     <Link href="#">
-                      <img src="/images/footer/app store.webp" alt="" />
+                      <Image
+                        src="/images/footer/app store.webp"
+                        alt="App Store"
+                        width={135}
+                        height={40}
+                      />
                     </Link>
                   </li>
                   <li>

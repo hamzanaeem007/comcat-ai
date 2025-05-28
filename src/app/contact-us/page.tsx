@@ -184,7 +184,12 @@ export default function ContactUs() {
             </div>
             <div className="col-lg-5 col-md-12 col-sm-12">
               <div className="contact-right">
-                <img src="/images/contact-us.webp" alt="" />
+                <Image
+                src="/images/contact-us.webp"
+                alt="Contact Us Illustration"
+                width={500}
+                height={400}
+              />
               </div>
             </div>
           </div>

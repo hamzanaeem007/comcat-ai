@@ -1,17 +1,15 @@
-// app/components/Benefits.tsx
-"use client"; // Mark as client component due to useEffect and DOM manipulation
-
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
 
 export default function Benefits() {
   const marqueeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const speed = 1;
+    const currentMarquees = marqueeRefs.current; // Capture the ref value
 
-    marqueeRefs.current.forEach((marquee, index) => {
+    currentMarquees.forEach((marquee, index) => {
       if (!marquee) return;
 
       let scrollAmount = 0;
@@ -27,6 +25,15 @@ export default function Benefits() {
         scrollAmount = -marquee.scrollWidth / 2;
         marquee.style.transform = `translateX(${scrollAmount}px)`;
       }
+
+      // Store event handlers to remove them later
+      const handleMouseOver = () => {
+        isHovered = true;
+      };
+
+      const handleMouseOut = () => {
+        isHovered = false;
+      };
 
       const scroll = () => {
         if (!isHovered) {
@@ -46,28 +53,31 @@ export default function Benefits() {
         requestAnimationFrame(scroll);
       };
 
-      marquee.addEventListener('mouseover', () => {
-        isHovered = true;
-      });
-
-      marquee.addEventListener('mouseout', () => {
-        isHovered = false;
-      });
+      // Add event listeners
+      marquee.addEventListener('mouseover', handleMouseOver);
+      marquee.addEventListener('mouseout', handleMouseOut);
 
       scroll();
+
+      // Return cleanup for this marquee
+      return () => {
+        marquee.removeEventListener('mouseover', handleMouseOver);
+        marquee.removeEventListener('mouseout', handleMouseOut);
+      };
     });
 
-    // Cleanup event listeners on unmount
+    // Cleanup all event listeners on unmount
     return () => {
-      marqueeRefs.current.forEach((marquee) => {
+      currentMarquees.forEach((marquee) => {
         if (marquee) {
-          marquee.removeEventListener('mouseover', () => {});
-          marquee.removeEventListener('mouseout', () => {});
+          // Note: Event listeners are already cleaned up in the inner cleanup
+          // If additional cleanup is needed, add it here
         }
       });
     };
-  }, []);
+  }, []); // Empty dependency array is fine since marqueeRefs is a ref
 
+  // Rest of the component remains unchanged
   return (
     <section className="benefits-wrapper">
       <div className="container">
