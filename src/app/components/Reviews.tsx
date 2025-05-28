@@ -53,7 +53,7 @@ export default function Reviews() {
             <div className="reviews-body">
               <p>
                 We chose Comcat AI for its user-friendly interface, robust security features, and seamless deployment process. Since implementing the solution,
-                we"ve successfully rolled out over 150 devices, significantly improving the efficiency of delivering both corporate and local content.
+                we&apos;ve successfully rolled out over 150 devices, significantly improving the efficiency of delivering both corporate and local content.
               </p>
             </div>
             <div className="reviews-footer">
@@ -80,7 +80,7 @@ export default function Reviews() {
             <div className="reviews-body">
               <p>
                 Comcat AI has been instrumental in helping us monitor our performance. It has enhanced our interactions with operators by providing clear
-                insights into how we're performing against our set targets. This has been a game-changer for our operations.
+                insights into how we&apos;re performing against our set targets. This has been a game-changer for our operations.
               </p>
             </div>
             <div className="reviews-footer">
@@ -106,8 +106,8 @@ export default function Reviews() {
             </div>
             <div className="reviews-body">
               <p>
-                We're extremely satisfied with Comcat AI! It only requires about 1% of my time-not because it's less important, but because it runs so smoothly
-                without any issues. The best part is how easy it is for end-users. As someone who can't personally assist everyone, it's crucial that the
+                We're extremely satisfied with Comcat AI! It only requires about 1% of my time-not because it&apos;s less important, but because it runs so smoothly
+                without any issues. The best part is how easy it is for end-users. As someone who can&apos;t personally assist everyone, it&apos;s crucial that the
                 system is intuitive for non-IT users, and Comcat AI delivers exactly that.
               </p>
             </div>
