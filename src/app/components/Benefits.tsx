@@ -1,3 +1,5 @@
+"use client"; // Ensure this is at the top
+
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,7 +9,9 @@ export default function Benefits() {
 
   useEffect(() => {
     const speed = 1;
-    const currentMarquees = marqueeRefs.current; // Capture the ref value
+    const currentMarquees = marqueeRefs.current;
+
+    const animationIds: number[] = [];
 
     currentMarquees.forEach((marquee, index) => {
       if (!marquee) return;
@@ -16,17 +20,14 @@ export default function Benefits() {
       let isHovered = false;
       const isReversed = index === 1;
 
-      // Duplicate the content for seamless scroll
       const content = marquee.innerHTML;
       marquee.innerHTML += content;
 
-      // Set initial offset for reverse scrolling
       if (isReversed) {
         scrollAmount = -marquee.scrollWidth / 2;
         marquee.style.transform = `translateX(${scrollAmount}px)`;
       }
 
-      // Store event handlers to remove them later
       const handleMouseOver = () => {
         isHovered = true;
       };
@@ -38,10 +39,8 @@ export default function Benefits() {
       const scroll = () => {
         if (!isHovered) {
           scrollAmount += isReversed ? speed : -speed;
-
           const maxScroll = marquee.scrollWidth / 2;
 
-          // Reset when end is reached
           if (!isReversed && Math.abs(scrollAmount) >= maxScroll) {
             scrollAmount = 0;
           } else if (isReversed && scrollAmount >= 0) {
@@ -50,34 +49,32 @@ export default function Benefits() {
 
           marquee.style.transform = `translateX(${scrollAmount}px)`;
         }
-        requestAnimationFrame(scroll);
+        animationIds[index] = requestAnimationFrame(scroll);
       };
 
-      // Add event listeners
       marquee.addEventListener('mouseover', handleMouseOver);
       marquee.addEventListener('mouseout', handleMouseOut);
 
       scroll();
 
-      // Return cleanup for this marquee
       return () => {
         marquee.removeEventListener('mouseover', handleMouseOver);
         marquee.removeEventListener('mouseout', handleMouseOut);
+        if (animationIds[index]) {
+          cancelAnimationFrame(animationIds[index]);
+        }
       };
     });
 
-    // Cleanup all event listeners on unmount
     return () => {
-      currentMarquees.forEach((marquee) => {
-        if (marquee) {
-          // Note: Event listeners are already cleaned up in the inner cleanup
-          // If additional cleanup is needed, add it here
+      currentMarquees.forEach((marquee, index) => {
+        if (marquee && animationIds[index]) {
+          cancelAnimationFrame(animationIds[index]);
         }
       });
     };
-  }, []); // Empty dependency array is fine since marqueeRefs is a ref
+  }, []);
 
-  // Rest of the component remains unchanged
   return (
     <section className="benefits-wrapper">
       <div className="container">
