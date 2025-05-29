@@ -269,7 +269,7 @@ export default function PricingPlan() {
                         src="/images/footer/google play.webp"
                         alt="Google Play Store"
                         width={135}
-                        height={40}
+                        height={57}
                       />
                     </Link>
                   </li>
@@ -279,7 +279,7 @@ export default function PricingPlan() {
                         src="/images/footer/app store.webp"
                         alt="App Store"
                         width={135}
-                        height={40}
+                        height={57}
                       />
                     </Link>
                   </li>
