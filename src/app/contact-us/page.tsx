@@ -188,7 +188,7 @@ export default function ContactUs() {
                 src="/images/contact-us.webp"
                 alt="Contact Us Illustration"
                 width={500}
-                height={400}
+                height={530}
               />
               </div>
             </div>
