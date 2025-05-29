@@ -15,7 +15,7 @@ export default function Hero() {
           </p>
           <ul>
             <li>
-              <Link href="#" className="app-store-btn">
+              <Link href="https://play.google.com/store/apps/details?id=com.comcatdigitaltv" className="app-store-btn">
                 <Image src="/images/footer/google play.webp" alt="Google Play Store" width={150} height={50} />
               </Link>
             </li>

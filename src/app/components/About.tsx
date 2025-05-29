@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function About() {
   return (
-    <section className="about-wrapper">
+    <section className="about-wrapper" id="aboutID">
       <div className="container">
         <div className="row">
           <div className="col-lg-5">

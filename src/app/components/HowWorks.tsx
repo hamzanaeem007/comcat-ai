@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function HowWorks() {
   return (
-    <section className="how-works-wrapper">
+    <section className="how-works-wrapper" id="Works">
       <div className="container">
         <div className="row">
           <div className="heading-area white-heading">

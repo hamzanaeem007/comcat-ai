@@ -115,7 +115,7 @@ export default function PricingPlan() {
 
   return (
     <>
-      <section className="Tab-wrapper">
+      <section className="Tab-wrapper" id="Pricing">
         <div className="container text-center">
           <div className="row">
             <div className="heading-area">

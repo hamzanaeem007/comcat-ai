@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 
 export default function Industries() {
   return (
-    <section className="industrial-wrapper">
+    <section className="industrial-wrapper" id="Industries">
       <div className="container">
         <div className="row">
           <div className="heading-area">

@@ -26,19 +26,19 @@ export default function Header() {
           <div className="collapse navbar-collapse justify-content-center" id="mynavbar">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link href="/" className="nav-link">About Us</Link>
+                <Link href="/#aboutID" className="nav-link">About Us</Link>
               </li>
               <li className="nav-item">
-                <Link href="#" className="nav-link">Industries</Link>
+                <Link href="/#Industries" className="nav-link">Industries</Link>
               </li>
               <li className="nav-item">
-                <Link href="#" className="nav-link">How it Works?</Link>
+                <Link href="/#Works" className="nav-link">How it Works?</Link>
               </li>
               <li className="nav-item">
-                <Link href="#" className="nav-link">Benefits</Link>
+                <Link href="/#Benefits" className="nav-link">Benefits</Link>
               </li>
               <li className="nav-item">
-                <Link href="#" className="nav-link">Pricing</Link>
+                <Link href="/#Pricing" className="nav-link">Pricing</Link>
               </li>
               <li className="nav-item">
                 <Link href="/contact-us" className="nav-link">Contact Us</Link>

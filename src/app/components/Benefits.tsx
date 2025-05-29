@@ -76,7 +76,7 @@ export default function Benefits() {
   }, []);
 
   return (
-    <section className="benefits-wrapper">
+    <section className="benefits-wrapper" id="Benefits">
       <div className="container">
         <div className="row">
           <div className="heading-area">
